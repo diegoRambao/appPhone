@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Paper, Typography, makeStyles } from '@material-ui/core'
+import { Paper, Typography, makeStyles, TextField } from '@material-ui/core'
 import FormSearchPerson from './FormSearchPerson'
 import Skeleton from '@material-ui/lab/Skeleton'
 import TablePerson from './TablePerson'
@@ -10,10 +10,13 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+    },
+    textSearch: {
+        width: '80%'
     }
 }));
 
-const TablePersonContainer = ({ people, loading, fetchPeople, setPeople }) => {
+const TablePersonContainer = ({ people, loading, fetchPeople, setPeople, setLoading }) => {
     const classes = useStyles();
     const [formSearch, setFormSearch] = useState([]);
 
@@ -29,9 +32,25 @@ const TablePersonContainer = ({ people, loading, fetchPeople, setPeople }) => {
     }
 
     const handleSubmitSearch = async(e) => {
+        setLoading(false)
         e.preventDefault()
         const response = await axios.post(`${config.API}personByNum`, formSearch)
         setPeople(response.data)
+        setLoading(true)
+    }
+
+    const handleSearchName = async(e) => {
+        setLoading(false)
+        try {
+            if(!e.target.value){
+                fetchPeople()
+            }
+            const response = await axios.post(`${config.API}personByName`, {'value' : e.target.value})
+            await setPeople(response.data)
+            setLoading(true)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const handleRefresh = () => {
@@ -55,6 +74,17 @@ const TablePersonContainer = ({ people, loading, fetchPeople, setPeople }) => {
                     formSearch={formSearch}
                     handleSubmit={handleSubmitSearch}
                     handleRefresh={handleRefresh}
+                />
+            </div>
+
+            <div className="mt-2">
+                <TextField
+                    id="search"
+                    label="Buscar"
+                    variant="outlined"
+                    name='search'
+                    onChange={handleSearchName}
+                    className={classes.textSearch}
                 />
             </div>
             {

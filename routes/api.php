@@ -17,3 +17,4 @@ Route::post('/person', 'PersonController@createPerson');
 Route::put('/person/{id}', 'PersonController@updatePerson');
 Route::post('/personByNum', 'PersonController@getPersonByNumber');
 Route::delete('/person/{id}', 'PersonController@deletePerson');
+Route::post('/personByName', 'PersonController@getPeronByName');

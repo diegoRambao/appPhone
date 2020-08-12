@@ -63,13 +63,13 @@ const FormPersonContainer = ({ fetchPeople }) => {
 
     const getPersonById = async(person) => {
         const result = await axios(`${config.API}person/${person.id}`)
-        setData(result.data)
+        await setData(result.data)
         const phones = result.data.phones
         let phoneArray = []
         phones.forEach((phone) => {
             phoneArray.push(phone.number)
         })
-        setPhone(phoneArray)
+        await setPhone(phoneArray)
     }
 
     const fetchGroup = async() => {

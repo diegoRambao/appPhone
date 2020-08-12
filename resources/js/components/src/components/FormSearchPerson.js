@@ -19,7 +19,7 @@ const FormSearchPerson = ({ handleChange, formSearch, handleSubmit, handleRefres
     return(
         <form className={classes.formSearch} onSubmit={handleSubmit}>
             <TextField
-                id="standard-basic"
+                id="first"
                 label="Firts Num"
                 variant="outlined"
                 value={formSearch.firstNum}
@@ -29,7 +29,7 @@ const FormSearchPerson = ({ handleChange, formSearch, handleSubmit, handleRefres
             />
 
             <TextField
-            id="standard-basic"
+            id="second"
             label="Second Num"
             value={formSearch.secondNum}
             variant="outlined"

@@ -16,7 +16,7 @@ class CreatePeopleTable extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name')->nullable(false);
-            $table->string('surname')->nullable(false);
+            $table->string('surname')->nullable(true);
             $table->foreignId('group_id')->nullable()->constrained('groups');
             $table->timestamps();
         });

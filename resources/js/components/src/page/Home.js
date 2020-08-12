@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import config from '../services/config'
 import TablePersonContainer from '../components/TablePersonContainer'
 import FormPersonContainer from '../components/FormPersonContainer'
@@ -24,6 +24,7 @@ const Home = () => {
                                 setPeople={setPeople}
                                 loading={loading}
                                 fetchPeople={fetchPeople}
+                                setLoading={setLoading}
                             />
                         </div>
                         <div className="col-md-4">

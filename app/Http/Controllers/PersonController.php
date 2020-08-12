@@ -59,6 +59,13 @@ class PersonController extends Controller
         ];
         return response()->json($data, 200);
     }
+    public function getPeronByName(Request $request){
+        $person = Person::where('name', 'like', '%'.$request->value.'%')
+                        ->orWhere('surname', 'like', '%'.$request->value.'%')
+                        ->get()
+                        ->load('group', 'phones');
+        return response()->json($person, 200);
+    }
 
     public function deletePerson($id){
         Phone::where('person_id', $id)->delete();
