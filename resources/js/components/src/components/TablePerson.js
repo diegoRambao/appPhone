@@ -39,7 +39,7 @@ const TablePerson = ({ people, deletePerson }) => {
     const cutWord = (word) => {
         word = word.toString()
         if(word.length >= 25){
-            let croppedWord = word.substr(1, 22)
+            let croppedWord = word.substr(0, 22)
             let concatenatedWord = croppedWord.concat('...')
             return concatenatedWord
         }
@@ -92,7 +92,7 @@ const TablePerson = ({ people, deletePerson }) => {
                                         )
                                     })}
                                     </TableCell>
-                                    <TableCell key={"actino"+person.id}>
+                                    <TableCell key={"action"+person.id}>
                                         <Button
                                             color="inherit"
                                             className={classes.buttonOption}
@@ -105,7 +105,7 @@ const TablePerson = ({ people, deletePerson }) => {
                                             onClick={() => UpdatePerson(person)}>
                                             <Icon>create</Icon>
                                         </Button>
-                                        <CopyToClipboard text={person.name + ' ' + person.surname}>
+                                        <CopyToClipboard text={`${person.name} ${person.surname || ''}`}>
                                             <Button  color="inherit" className={classes.buttonOption} onClick={handleOpenSnack}>
                                                 <Icon>content_copy</Icon>
                                             </Button>

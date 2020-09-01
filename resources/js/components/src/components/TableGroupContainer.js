@@ -20,6 +20,7 @@ const TableGroupContainer = ({ loading, groups, fetchData }) => {
         if (window.confirm(`¿Estas seguro que quieres eliminar "${group.name}"?`)) {
             const result = await axios.delete(`${config.API}group/${group.id}`)
             fetchData()
+            alert('Dato Eliminado')
         }
     }
 

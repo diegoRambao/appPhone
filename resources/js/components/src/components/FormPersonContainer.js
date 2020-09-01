@@ -20,7 +20,7 @@ const FormPersonContainer = ({ fetchPeople }) => {
     const [groups, setGroups] = useState([]);
     const [data, setData] = useState([]);
     const [phone, setPhone] = useState([]);
-    const { person } = useContext(PersonContext);
+    const { person, UpdatePerson } = useContext(PersonContext);
 
     const handleChange = (e) => {
         setData({...data, [e.target.name] : e.target.value})
@@ -59,6 +59,7 @@ const FormPersonContainer = ({ fetchPeople }) => {
     const resetInput = () => {
         setData({id: '', name: '', surname: '', group_id: ''});
         setPhone([])
+        UpdatePerson({})
     }
 
     const getPersonById = async(person) => {
@@ -86,6 +87,7 @@ const FormPersonContainer = ({ fetchPeople }) => {
     useEffect(() => {
         getPersonById(person)
     }, [person])
+
     return(
         <Paper className={classes.paper}>
             <Typography variant="h5" gutterBottom>

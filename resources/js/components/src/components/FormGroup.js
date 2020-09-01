@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const FormGroup = ({ data, onChange, onSubmit }) => {
+const FormGroup = ({ data, onChange, onSubmit, resetInput }) => {
     const classes = useStyles();
     return(
         <form  autoComplete="off" onSubmit={onSubmit}>
@@ -35,13 +35,21 @@ const FormGroup = ({ data, onChange, onSubmit }) => {
                 />
             </div>
 
-            <div>
+            <div className="d-flex justify-content-between">
                 <Button
                     variant="contained"
                     color="primary"
-                    type="submit"
-                    className={classes.textFieldWidth}>
+                    style={{'width': '100%'}}
+                    className="mr-3"
+                    type="Submit">
                     Guardar
+                </Button>
+                <Button
+                    variant="contained"
+                    style={{'width': '100%'}}
+                    className="ml-3"
+                    onClick={resetInput}>
+                    Cancelar
                 </Button>
             </div>
         </form>

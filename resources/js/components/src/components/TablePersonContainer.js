@@ -21,9 +21,10 @@ const TablePersonContainer = ({ people, loading, fetchPeople, setPeople, setLoad
     const [formSearch, setFormSearch] = useState([]);
 
     const deletePerson = async(person) => {
-        if (window.confirm(`¿Estas seguro que quieres eliminar "${person.name}"?`)) {
+        if (window.confirm(`¿Estas seguro que quieres eliminar "${person.name} ${person.surname || ''}"?`)) {
             const result = await axios.delete(`${config.API}person/${person.id}`)
             fetchPeople()
+            alert('Dato Eliminado')
         }
     }
 

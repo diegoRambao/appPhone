@@ -33,7 +33,7 @@ const TableGroup = ({ groups, deleteGroup }) => {
     const cutWord = (word) => {
         word = word.toString()
         if(word.length >= 25){
-            let croppedWord = word.substr(1, 22)
+            let croppedWord = word.substr(0, 22)
             let concatenatedWord = croppedWord.concat('...')
             return concatenatedWord
         }

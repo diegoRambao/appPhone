@@ -18,7 +18,7 @@ const FormGroupContainer = ({ fetchData }) => {
     const classes = useStyles();
     const [data, setData] = useState([]);
     const [showAlert, setShowAlert] = useState(false);
-    const { group } = useContext(GroupContext);
+    const { group, UpdateGroup } = useContext(GroupContext);
 
     const handleChange = (e) => {
         setData({...data, [e.target.name] : e.target.value})
@@ -26,6 +26,7 @@ const FormGroupContainer = ({ fetchData }) => {
 
     const resetInput = () => {
         setData({});
+        UpdateGroup({})
     }
 
     const handleSubmit = async(e) => {
@@ -67,7 +68,7 @@ const FormGroupContainer = ({ fetchData }) => {
                 <Alert severity="success" className="mb-3">¡Datos Guardados con exito!</Alert>
                 : null
             }
-                <FormGroup data={data} onChange={handleChange} onSubmit={handleSubmit}/>
+                <FormGroup data={data} onChange={handleChange} onSubmit={handleSubmit} resetInput={resetInput}/>
             </div>
         </Paper>
     )
