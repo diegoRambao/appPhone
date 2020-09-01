@@ -19,6 +19,7 @@ const FormGroup = ({ data, onChange, onSubmit }) => {
                     value={data.name || ''}
                     label="Nombre"
                     variant="outlined"
+                    required
                     className={classes.textFieldWidth}/>
             </div>
             <div className="form-group">

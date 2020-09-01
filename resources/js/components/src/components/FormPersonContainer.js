@@ -57,19 +57,21 @@ const FormPersonContainer = ({ fetchPeople }) => {
     };
 
     const resetInput = () => {
-        setData({name: '', surname: '', group_id: ''});
+        setData({id: '', name: '', surname: '', group_id: ''});
         setPhone([])
     }
 
     const getPersonById = async(person) => {
-        const result = await axios(`${config.API}person/${person.id}`)
-        await setData(result.data)
-        const phones = result.data.phones
-        let phoneArray = []
-        phones.forEach((phone) => {
-            phoneArray.push(phone.number)
-        })
-        await setPhone(phoneArray)
+        if(person.id) {
+            const result = await axios(`${config.API}person/${person.id}`)
+            await setData(result.data)
+            const phones = result.data.phones
+            let phoneArray = []
+            phones.forEach((phone) => {
+                phoneArray.push(phone.number)
+            })
+            await setPhone(phoneArray)
+        }
     }
 
     const fetchGroup = async() => {
@@ -79,9 +81,11 @@ const FormPersonContainer = ({ fetchPeople }) => {
 
     useEffect(() => {
         fetchGroup()
-        getPersonById(person)
-    }, [person]);
+    }, []);
 
+    useEffect(() => {
+        getPersonById(person)
+    }, [person])
     return(
         <Paper className={classes.paper}>
             <Typography variant="h5" gutterBottom>
@@ -102,6 +106,7 @@ const FormPersonContainer = ({ fetchPeople }) => {
                     removeChip={removeChip}
                     phone={phone}
                     handleSubmit={handleSubmit}
+                    resetInput={resetInput}
                     />
             </div>
         </Paper>

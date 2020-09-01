@@ -16,8 +16,8 @@ class PersonController extends Controller
     }
 
     public function getPersonById($id){
-        $person = Person::find($id)->load('group', 'phones');
-        return response()->json($person, 200);
+            $person = Person::find($id)->load('group', 'phones');
+            return response()->json($person, 200);
     }
 
     public function createPerson(Request $request){
@@ -59,6 +59,7 @@ class PersonController extends Controller
         ];
         return response()->json($data, 200);
     }
+
     public function getPeronByName(Request $request){
         $person = Person::where('name', 'like', '%'.$request->value.'%')
                         ->orWhere('surname', 'like', '%'.$request->value.'%')
